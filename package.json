@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/zhughes3/cms#readme",
   "dependencies": {
+    "aws-sdk": "^2.229.1",
     "config": "^1.30.0",
     "hapi": "^17.3.1"
   }
