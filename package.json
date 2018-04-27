@@ -1,0 +1,29 @@
+{
+  "name": "cms",
+  "version": "0.0.1",
+  "description": "A personal CMS built for my blog.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhughes3/cms.git"
+  },
+  "keywords": [
+    "node",
+    "hapi",
+    "cms"
+  ],
+  "author": "Zachary Hughes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhughes3/cms/issues"
+  },
+  "homepage": "https://github.com/zhughes3/cms#readme",
+  "dependencies": {
+    "config": "^1.30.0",
+    "hapi": "^17.3.1"
+  }
+}
