@@ -1,6 +1,7 @@
 'use strict';
 
-let dbController = require('./controllers/DBController');
+let dbController = require('./services/DBController');
+let dbRoutes = require('./services/DBRoutes');
 
 const routes = [
 {
@@ -9,31 +10,12 @@ const routes = [
 	handler: (request, h) => {
 		return 'pong';
 	}
-},
-{
-	method: 'GET',
-	path: '/blog',
-	handler: (request, h) => {
-		return dbController.readAll()
-			.then(data => {
-				return data;
-			}).catch(err => {
-				return err;
-			});
-	}
-},
-{
-	method: 'GET',
-	path: '/blog/{id}',
-	handler: (request, h) => {
-		let id = encodeURIComponent(request.params.id);
-		return dbController.read(id)
-			.then(data => {
-				return data;
-			}).catch(err => {
-				return err;
-			});
-	}
 }];
+
+dbRoutes.forEach(route => {
+	routes.push(route);
+})
+
+
 
 module.exports = routes;
