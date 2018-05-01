@@ -3,6 +3,7 @@
 let dbController = require('./services/DBController');
 let dbRoutes = require('./services/DBRoutes');
 
+//add route for health check and static file serving in public folder
 const routes = [
 {
 	method: 'GET',
@@ -10,6 +11,15 @@ const routes = [
 	handler: (request, h) => {
 		return 'pong';
 	}
+},
+{
+    method: 'GET',
+    path: '/{param*}',
+    handler: {
+        directory: {
+            path: '.'
+        }
+    }
 }];
 
 dbRoutes.forEach(route => {

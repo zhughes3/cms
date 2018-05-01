@@ -2,6 +2,7 @@
 
 const Hapi = require('hapi');
 const Pug = require('pug');
+const Path = require('path');
 
 const plugins = require('./plugins');
 const routes = require('./routes');
@@ -9,7 +10,12 @@ const routes = require('./routes');
 exports.deployment = async (host, port) => {
 	const server = Hapi.server({
 		host: host,
-		port: port
+		port: port,
+		routes: {
+			files: {
+				relativeTo: Path.join(__dirname, 'public')
+			}
+		}
 	});
 
 	await server.register(plugins);
