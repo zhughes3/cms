@@ -1,16 +1,15 @@
 'use strict';
 
 const Hapi = require('hapi');
-const Config = require('config');
 const Pug = require('pug');
 
 const plugins = require('./plugins');
 const routes = require('./routes');
 
-exports.deployment = async () => {
+exports.deployment = async (host, port) => {
 	const server = Hapi.server({
-		host: Config.get('app.host'),
-		port: Config.get('app.port')
+		host: host,
+		port: port
 	});
 
 	await server.register(plugins);
@@ -25,6 +24,5 @@ exports.deployment = async () => {
     });
 
 	return server;
-
 };
 
