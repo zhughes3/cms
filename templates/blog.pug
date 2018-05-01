@@ -15,7 +15,7 @@ html(lang = 'en')
 							li.post
 								p.dateline
 									span.day= new Date(datapoint.date).getDate()
-									span.month= new Date(datapoint.date).getMonth()
+									span.month= new Date(datapoint.date).toLocaleString('en-us', {month: 'long'})
 									span.year= new Date(datapoint.date).getFullYear()
 								a.title(href="/blog/" + datapoint.id)= datapoint.title
 								p.description= datapoint.description

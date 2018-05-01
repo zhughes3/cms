@@ -3,6 +3,7 @@ h1 {
 }
 
 ol.posts {
+	list-style-type: none;
 
 }
 
@@ -11,29 +12,61 @@ li.post {
 }
 
 p.dateline {
+	display: block;
+    text-align: right;
+    width: 100px;
+    padding: 0 36px 0 0;
+    float: left;
 
 }
 
 span.day {
-
+	display: block;
+    color: #800000;
+    font-size: 200%;
 }
 
 span.month {
-
+	display: block;
+    font-size: 75%;
 }
 
 span.year {
-
+	display: block;
+    font-size: 75%;
+}
+.description, .title, .tags {
+	margin-left: 136px;
 }
 
 a.title {
-
+	display: block;
+    /*font-family: "Concourse-T6";*/
+    font-size: 200%;
+    line-height: 100%;
 }
 
 p.description {
+	padding: 1ex 0;
+    font-size: 90%;
+    color: #777;
+}
 
+ol.posts > li .tags {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 36px;
 }
 
 ul.tags {
+	list-style-type: none;
+    padding-top: 0.5ex;
+    /*font-family: "Concourse-C4";*/
+    font-size: 50%;
+    text-transform: uppercase;
+    color: #777;
+}
 
+.tags li {
+	display: inline-block;
+    padding-right: 1em;
 }
