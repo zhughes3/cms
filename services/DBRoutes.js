@@ -9,7 +9,8 @@ const routes = [
 	handler: (request, h) => {
 		return dbController.readAll()
 			.then(data => {
-				return data;
+				return h.view('blog', {data: normalizeBlogPosts(data)});
+				//return data;
 			}).catch(err => {
 				return err;
 			});
@@ -29,6 +30,28 @@ const routes = [
 	}
 }
 ]
+
+const normalizeBlogPosts = data => {
+	let posts = [];
+
+	data.forEach(datapoint => {
+		console.log(datapoint);
+		let tags = [];
+		datapoint.tags.L.forEach(tag => {
+			tags.push(tag.S);
+		});
+
+		posts.push({
+			id: datapoint._id.S,
+			date: datapoint.date.S,
+			description: datapoint.description.S,
+			tags: tags,
+			title: datapoint.title.S
+		});
+	});
+
+	return posts;
+};
 
 module.exports = routes;
 
