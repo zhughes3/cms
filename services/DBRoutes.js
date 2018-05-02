@@ -35,7 +35,6 @@ const normalizeBlogPosts = data => {
 	let posts = [];
 
 	data.forEach(datapoint => {
-		console.log(datapoint);
 		let tags = [];
 		datapoint.tags.L.forEach(tag => {
 			tags.push(tag.S);

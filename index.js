@@ -31,7 +31,7 @@ async function start() {
 
 const gracefullyStopServers = () => {
 	servers.forEach(server => {
-		server.stop({timeout: 10 * 1000}, () => {
+		server.stop({timeout: 1 * 1000}, () => {
 			console.log(`Shutting down server ${server.info.uri}`);
 			process.exit(0);
 		});
@@ -53,5 +53,6 @@ process.on('unhandledRejection', (reason, promise) => {
 
 process.on('SIGINT', gracefullyStopServers)
 process.on('SIGTERM', gracefullyStopServers)
+process.on('SIGUSR2', () => { process.exit(0); });
 
 start();
