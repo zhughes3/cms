@@ -1,0 +1,9 @@
+extends layout
+
+block content
+	div.row
+		div.col
+			article.body.post
+				h1#title= data.title
+					small= data.description 
+				!= data.body

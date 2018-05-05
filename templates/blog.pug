@@ -1,31 +1,18 @@
-doctype html
-html(lang = 'en')
-	head
-		title= 'Blog'
-		link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB", crossorigin="anonymous")
-		script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js", integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T", crossorigin="anonymous")
-		link(href="https://fonts.googleapis.com/css?family=Titillium+Web", rel="stylesheet")
-		link(href="style.css", rel="stylesheet")
-	body
-		div.container
-			div.row
-				div.col
-					header.text-center
-						h1 /dev/zhughes
-						p.siteDescription >> Musings on software, life and everything in between
-						p.author All content by Zachary Hughes
-			div.row
-				div.col
-					ol.posts
-						each datapoint in data
-							li.post
-								p.dateline
-									span.day= new Date(datapoint.date).getDate()
-									span.month= new Date(datapoint.date).toLocaleString('en-us', {month: 'long'})
-									span.year= new Date(datapoint.date).getFullYear()
-								a.title(href="/blog/" + datapoint.id)= datapoint.title
-								p.description= datapoint.description
-								ul.tags
-									each val in datapoint.tags
-										li= val
+extends layout
+
+block content
+	div.row
+		div.col
+			ol.posts
+				each datapoint in data
+					li.post
+						p.dateline
+							span.day= new Date(datapoint.date).getDate()
+							span.month= new Date(datapoint.date).toLocaleString('en-us', {month: 'long'})
+							span.year= new Date(datapoint.date).getFullYear()
+						a.title(href="/blog/" + datapoint.id)= datapoint.title
+						p.description= datapoint.description
+						ul.tags
+							each val in datapoint.tags
+								li= val
 

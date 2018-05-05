@@ -9,7 +9,10 @@ const routes = [
 	handler: (request, h) => {
 		return dbController.readAll()
 			.then(data => {
-				return h.view('blog', {data: normalizeBlogPosts(data)});
+				return h.view('blog', {
+					data: normalizeBlogPosts(data),
+					title: "/dev/zhughes"
+				});
 				//return data;
 			}).catch(err => {
 				return err;
@@ -23,7 +26,9 @@ const routes = [
 		let id = encodeURIComponent(request.params.id);
 		return dbController.read(id)
 			.then(data => {
-				return data;
+				console.log(data);
+				return h.view('blog-post', {data: data, title: data.title});
+				//return data;
 			}).catch(err => {
 				return err;
 			});
