@@ -15,6 +15,9 @@ exports.deployment = async (host, port) => {
 			files: {
 				relativeTo: Path.join(__dirname, 'public')
 			}
+		},
+		debug: {
+			request: ['error']
 		}
 	});
 

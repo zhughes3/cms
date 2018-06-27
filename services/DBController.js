@@ -2,7 +2,7 @@
 
 let AWS = require('aws-sdk');
 AWS.config.update({region: 'us-east-1'});
-//AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
+AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'captech'});
 
 let ddb = new AWS.DynamoDB({apiVersion: '2012-10-08'});
 let docClient = new AWS.DynamoDB.DocumentClient();
@@ -26,7 +26,7 @@ module.exports = {
 			TableName: TABLE_NAME
 		};
 		return new Promise((resolve, reject) => {
-			ddb.scan(params, (err, data) => {
+			docClient.scan(params, (err, data) => {
 				if (err) {
 					reject(err);
 				} else {

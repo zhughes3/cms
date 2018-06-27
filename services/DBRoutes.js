@@ -10,7 +10,8 @@ const routes = [
 		return dbController.readAll()
 			.then(data => {
 				return h.view('blog', {
-					data: normalizeBlogPosts(data),
+					//data: normalizeBlogPosts(data),
+					data: data,
 					title: "/dev/zhughes"
 				});
 				//return data;
@@ -35,27 +36,6 @@ const routes = [
 	}
 }
 ]
-
-const normalizeBlogPosts = data => {
-	let posts = [];
-
-	data.forEach(datapoint => {
-		let tags = [];
-		datapoint.tags.L.forEach(tag => {
-			tags.push(tag.S);
-		});
-
-		posts.push({
-			id: datapoint._id.S,
-			date: datapoint.date.S,
-			description: datapoint.description.S,
-			tags: tags,
-			title: datapoint.title.S
-		});
-	});
-
-	return posts;
-};
 
 module.exports = routes;
 
