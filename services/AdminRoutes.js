@@ -8,9 +8,9 @@ const routes = [
     handler: (request, h) => {
         return adminController.dashboard()
             .then(data => {
-
+                return data;
             }).catch(err => {
-
+                console.log(err);
             });
     }
 }
