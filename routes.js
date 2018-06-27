@@ -1,7 +1,13 @@
 'use strict';
 
-let dbController = require('./services/DBController');
-let dbRoutes = require('./services/DBRoutes');
+const dbRoutes = require('./services/DBRoutes');
+const adminRoutes = require('./services/AdminRoutes');
+
+function addRoutesFromFile(routesArray, routesFile) {
+    routesFile.forEach(route => {
+        routesArray.push(route);
+    });
+}
 
 //add route for health check and static file serving in public folder
 const routes = [
@@ -22,10 +28,7 @@ const routes = [
     }
 }];
 
-dbRoutes.forEach(route => {
-	routes.push(route);
-})
-
-
+addRoutesFromFile(routes, dbRoutes);
+addRoutesFromFile(routes, adminRoutes);
 
 module.exports = routes;
