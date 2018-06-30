@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    .row
+        .col
+            strong Add Post
+            form.form-horizontal(action="/blog", method="post", role="form")
+                .form-group
+                    label(for="title") Title
+                    input#title.form-control(name="title", type="text", size="100")
+                .form-group
+                    label(for="desc") Description
+                    input#desc(name="desc", type="text", size="100")
+                .form-group
+                    label(for="tags") Tags
+                    input#tags(name="tags", type="text", placeholder="Input tags separated with commas", size="100")
+                .form-group
+                    label(for="body") Body
+                    textarea#body(name="body", rows="50", cols="120")
+                .form-group
+                    button.btn.btn-primary(type="submit") Submit

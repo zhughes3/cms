@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./set-aws-creds.sh && node index.js",
-    "debug": "nodemon index.js"
+    "start": "source ./environment.sh && node index.js",
+    "debug": "source ./environment.sh && nodemon index.js"
   },
   "repository": {
     "type": "git",

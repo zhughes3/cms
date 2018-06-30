@@ -6,12 +6,13 @@ const routes = [
 {   method: 'GET',
     path: '/admin',
     handler: (request, h) => {
-        return adminController.dashboard()
-            .then(data => {
-                return data;
-            }).catch(err => {
-                console.log(err);
-            });
+        return h.view('admin', {});
+        // return adminController.dashboard()
+        //     .then(data => {
+        //         return data;
+        //     }).catch(err => {
+        //         console.log(err);
+        //     });
     }
 }
 ];
