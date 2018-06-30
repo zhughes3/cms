@@ -29,7 +29,6 @@ const routes = [
 					data: data,
 					title: data.title
 				});
-				//return data;
 			}).catch(err => {
 				return err;
 			});
@@ -44,7 +43,6 @@ const routes = [
 			.then(data => {
 				console.log(data);
 				return h.view('blog-post', {data: data, title: data.title});
-				//return data;
 			}).catch(err => {
 				return err;
 			});
