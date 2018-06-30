@@ -10,9 +10,24 @@ const routes = [
 		return dbController.readAll()
 			.then(data => {
 				return h.view('blog', {
-					//data: normalizeBlogPosts(data),
 					data: data,
 					title: "/dev/zhughes"
+				});
+				//return data;
+			}).catch(err => {
+				return err;
+			});
+	}
+},
+{
+	method: 'POST',
+	path: '/blog',
+	handler: (request, h) => {
+		return dbController.create(request.payload)
+			.then(data => {
+				return h.view('blog-post', {
+					data: data,
+					title: data.title
 				});
 				//return data;
 			}).catch(err => {
