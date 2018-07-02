@@ -26,6 +26,13 @@ const routes = [
             path: '.'
         }
     }
+},
+{
+    method: 'GET',
+    path: '/',
+    handler: (request, h) => {
+        return h.view('home', {});
+    }
 }];
 
 addRoutesFromFile(routes, dbRoutes);
