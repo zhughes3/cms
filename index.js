@@ -4,29 +4,24 @@ const Config = require('config');
 
 const Server = require('./server');
 
-let servers = [];
-
-
 async function start() {
-
-    try {
-    	const server = await Server.deployment(Config.get('app.host'), Config.get('app.port'));
-        await server.start();
-        servers.push(server);
-
-        const server2 = await Server.deployment(Config.get('app.host'), 3031);
-        await server2.start();
-        servers.push(server2);
-    }
-    catch (err) {
+	const services = Config.get('app.services');
+  	try {
+		const serverPromises = services.map(async (service) => {
+			const server = await Server.deployment(service.host, service.port);
+			await server.start();
+			return server;
+	  
+    	});
+		const servers = await Promise.all(serverPromises);
+		servers.forEach(server => {
+		console.log(`Server running at ${server.info.uri}`);
+		});
+    } catch (err) {
     	console.log('an error has been caught');
         console.log(err);
         process.exit(1);
     }
-
-    servers.forEach(server => {
-    	console.log(`Server running at ${server.info.uri}`);
-    });
 };
 
 const gracefullyStopServers = () => {
