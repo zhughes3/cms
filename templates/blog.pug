@@ -10,8 +10,8 @@ block content
 							span.day= new Date(datapoint.date).getDate()
 							span.month= new Date(datapoint.date).toLocaleString('en-us', {month: 'long'})
 							span.year= new Date(datapoint.date).getFullYear()
-						a.title(href="/blog/" + datapoint._id)= datapoint.title
-						p.description= datapoint.description
+						a.title(href="/blog/" + datapoint.slug)= datapoint.title
+						p.description= datapoint.desc
 						ul.tags
 							each val in datapoint.tags
 								li= val

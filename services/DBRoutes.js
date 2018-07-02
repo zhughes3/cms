@@ -36,10 +36,10 @@ const routes = [
 },
 {
 	method: 'GET',
-	path: '/blog/{id}',
+	path: '/blog/{slug}',
 	handler: (request, h) => {
-		let id = encodeURIComponent(request.params.id);
-		return dbController.read(id)
+		let title = encodeURIComponent(request.params.slug);
+		return dbController.read(title)
 			.then(data => {
 				console.log(data);
 				return h.view('blog-post', {data: data, title: data.title});
