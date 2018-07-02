@@ -1,32 +1,17 @@
 'use strict';
 
-
 let AWS = require('aws-sdk');
 AWS.config.update({region: 'us-east-1'});
 AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'captech'});
-
-let ddb = new AWS.DynamoDB({apiVersion: '2012-10-08'});
 let docClient = new AWS.DynamoDB.DocumentClient();
-
 let showdown  = require('showdown');
 let converter = new showdown.Converter();
 const uuidv4 = require('uuid/v4');
+let urlSlug = require('url-slug');
 
-
-const TABLE_NAME = 'articles';
+const TABLE_NAME = 'zhughes-articles';
 
 module.exports = {
-	listTables: () => {
-		return new Promise((resolve, reject) => {
-			ddb.listTables({Limit: 10}, (err, data) => {
-				if (err) {
-					reject(err);
-				} else {
-					resolve(data);
-				}
-			});
-		});
-	},
 	readAll: () => {
 		let params = {
 			TableName: TABLE_NAME
@@ -36,24 +21,35 @@ module.exports = {
 				if (err) {
 					reject(err);
 				} else {
-					resolve(data.Items);
+					let items = [];
+					data.Items.forEach(item => {
+						items.push(Object.assign({slug: urlSlug(item.title)}, item));
+					});
+					resolve(items);
 				}
 			});
 		});
 	},
-	read: (id) => {
+	read: (title) => {
 		let params = {
-			TableName: TABLE_NAME,
-			Key: {
-				"_id": id
-			}
+		    TableName: TABLE_NAME,
+		    KeyConditionExpression: "#slug = :slug",
+		    ExpressionAttributeNames:{
+		        "#slug": "slug"
+		    },
+		    ExpressionAttributeValues: {
+		        ":slug": title
+		    }
 		};
 		return new Promise((resolve, reject) => {
-			docClient.get(params, (err, data) => {
+			docClient.query(params, (err, data) => {
 				if (err) {
 					reject(err);
 				} else {
-					resolve(data.Item);
+					if (data.Items.length > 1) {
+						console.log("Query to get a single blog post returned more than 1 item.");
+					}
+					resolve(data.Items[0]);
 				}
 			});
 		});
@@ -78,8 +74,11 @@ module.exports = {
 
 };
 
+
+
 function _formatOnCreateItem(payload) {
 	const title = payload.title.trim();
+	const slug = urlSlug(title);
 	const desc = payload.desc.trim();
 	let tags = [];
 	payload.tags.split(',').forEach(tag => {
@@ -94,6 +93,7 @@ function _formatOnCreateItem(payload) {
 		tags: tags,
 		body: body,
 		date: date,
-		_id: id
+		_id: id,
+		slug: slug
 	};
 }
