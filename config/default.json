@@ -4,9 +4,6 @@
 			{
 				"host": "localhost",
 				"port": 3030
-			}, {
-				"host": "localhost",
-				"port": 3031
 			}
 		]
 	},
@@ -14,7 +11,7 @@
 		"author": "Zachary Hughes",
 		"tagline": "Thoughts on software, my life and everything in between",
 		"email": "zhughes3@gmail.com",
-		"dynamoDbTableName": "zhughes-articles"
-
+		"database": "DynamoDB",
+		"tableName": "zhughes-articles"
 	}
 }
