@@ -2,6 +2,7 @@
 
 const dbRoutes = require('./services/DBRoutes');
 const adminRoutes = require('./services/AdminRoutes');
+const blurbRoutes = require('./services/BlurbRoutes');
 
 function addRoutesFromFile(routesArray, routesFile) {
     routesFile.forEach(route => {
@@ -37,5 +38,6 @@ const routes = [
 
 addRoutesFromFile(routes, dbRoutes);
 addRoutesFromFile(routes, adminRoutes);
+addRoutesFromFile(routes, blurbRoutes);
 
 module.exports = routes;

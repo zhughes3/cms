@@ -1,8 +1,8 @@
 extends layout
 
 block content
-	div.row
-		div.col
+	.row
+		.col-9
 			ol.posts
 				each datapoint in data
 					li.post
@@ -15,4 +15,11 @@ block content
 						ul.tags
 							each val in datapoint.tags
 								li= val
+		.col-3
+			.card
+				.card-body(width="300")
+					h5.card-title #BumpinHeavy
+					.mb-1.text-muted Nov 11 (7:53pm)
+					- var spotify = '<iframe src="https://open.spotify.com/embed/track/2Vx8E3K5icPZR7OCklWBXX" width="100%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>'
+					p.card-text !{spotify}
 

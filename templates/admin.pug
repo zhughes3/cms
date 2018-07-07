@@ -3,19 +3,36 @@ extends layout
 block content
     .row
         .col
-            h3 Add Post
+            h3 Add Article
+            //h3.
+                #[a.btn.btn-primary(data-toggle="collapse", href="#postCollapse", role="button", aria-expanded="true", aria-controls="postCollapse") Add Post]
             form.form-horizontal(action="/blog", method="post", role="form")
                 .form-group
-                    label(for="title") Title
-                    input#title.form-control(name="title", type="text", size="100")
+                    label(for="articleTitle") Title
+                    input#articleTitle.form-control(name="title", type="text", size="100")
                 .form-group
-                    label(for="desc") Description
-                    input#desc(name="desc", type="text", size="100")
+                    label(for="articleDesc") Description
+                    input#articleDesc(name="desc", type="text", size="100")
                 .form-group
-                    label(for="tags") Tags
-                    input#tags(name="tags", type="text", placeholder="Input tags separated with commas", size="100")
+                    label(for="articleTags") Tags
+                    input#articleTags(name="tags", type="text", placeholder="Input tags separated with commas", size="100")
                 .form-group
-                    label(for="body") Body
-                    textarea#body(name="body", rows="15", cols="120")
+                    label(for="articleBody") Body
+                    textarea#articleBody(name="body", rows="15", cols="120")
                 .form-group
-                    button.btn.btn-primary(type="submit") Submit
+                    button.btn.btn-primary(type="submit") Submit Article
+
+    .row
+        .col
+            h3 Add Blurb
+            form.form-horizontal(action="/blurbs", method="post", role="form")
+                .form-group
+                    label(for="blurbType") Type
+                    select#blurbType.form-control(name="type")
+                        option BumpinHeavy
+                .form-group
+                    label(for="spotifyEmbed") Spotify Embed Code
+                    textarea#spotifyEmbed(name="body", rows="15", cols="120")
+                .form-group
+                    button.btn.btn-primary(type="submit") Submit Blurb
+                
