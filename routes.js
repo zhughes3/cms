@@ -32,7 +32,7 @@ const routes = [
     method: 'GET',
     path: '/',
     handler: (request, h) => {
-        return h.view('home', {});
+        return h.file('index.html');
     }
 }];
 
