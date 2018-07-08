@@ -25,14 +25,19 @@ block content
     .row
         .col
             h3 Add Blurb
-            form.form-horizontal(action="/blurbs", method="post", role="form")
+            form.form-horizontal(action="/blurbs", method="post", role="form", enctype="multipart/form-data")
                 .form-group
                     label(for="blurbType") Type
                     select#blurbType.form-control(name="type")
                         option BumpinHeavy
                 .form-group
-                    label(for="spotifyEmbed") Spotify Embed Code
-                    textarea#spotifyEmbed(name="body", rows="15", cols="120")
+                    label(for="artist") Artist
+                    input#artist(name="artist", type="text", size="100")
+                .form-group
+                    label(for="track") Track
+                    input#track(name="track", type="text", size="100")
+                .form-group
+                    label(for="artwork") Artwork
+                    input#artwork(type="file", accept="image/*", name="artwork")
                 .form-group
                     button.btn.btn-primary(type="submit") Submit Blurb
-                
