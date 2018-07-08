@@ -39,19 +39,21 @@ module.exports = {
 			});
 		});
 	}
-
 };
 
 function _formatOnCreateItem(payload) {
 	const type = payload.type;
 	const date = new Date().toISOString();
 	const id = uuidv4();
-	const body = payload.body;
+	const track = payload.track;
+	const artist = payload.artist;
+	const artwork = payload.artwork.toString('base64');
 	return {
 		_id: id,
 		date: date,
 		type: type,
-		body: body
-
+		track: track,
+		artist: artist,
+		artwork: artwork
 	};
 }

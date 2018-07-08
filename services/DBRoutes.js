@@ -9,11 +9,11 @@ const routes = [
 	handler: (request, h) => {
 		return dbController.readAll()
 			.then(data => {
-				return h.view('blog', {
-					data: data,
-					title: "/dev/zhughes"
-				});
-				//return data;
+				// return h.view('blog', {
+				// 	data: data,
+				// 	title: 'dev/zhughes'
+				// });
+				return data;
 			}).catch(err => {
 				return err;
 			});
